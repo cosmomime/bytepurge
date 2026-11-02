@@ -15,6 +15,7 @@ bin/
 gen/
 out/
 build/
+dist/
 app/build/
 desktop/build/
 
