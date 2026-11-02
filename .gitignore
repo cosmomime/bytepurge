@@ -64,3 +64,6 @@ Thumbs.db
 
 # Kotlin / Compose Multiplatform
 .kotlin/
+
+# Internal developer test tools & snapshot runners
+DesktopSnapshotRunner.kt

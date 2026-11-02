@@ -2,7 +2,7 @@
 
 # 🧹 BytePurge
 
-**The offline, privacy-first, zero-telemetry storage cleaner and shader hunter for Android & Windows.**
+**The offline, privacy-first, zero-telemetry storage cleaner, disk analyzer, and shader hunter for Android & Windows.**
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Windows-green.svg)](#)
@@ -24,50 +24,46 @@
 
 ---
 
-## 🌟 Why BytePurge?
+## 🌟 Core Pillars
 
-Most storage cleaners have become bloated, aggressive nagware:
-- **CCleaner** was acquired by Avast, bundles background telemetries, and nags you constantly to buy annual subscriptions.
-- **BleachBit** is reliable, but its interface looks stuck in Windows 98, lacks game shader hunting, and can feel intimidating to everyday users.
-- **Mobile Cleaners** on Google Play are notorious for spamming push notifications, showing fake "cleaning RAM" animations, and harvesting user data.
-
-**BytePurge is built differently:**
-- 🛡️ **100% Offline & Private**: Zero network permissions required for core cleaning. No analytics, no tracking, no phoning home.
-- 🎨 **Modern OLED Aesthetic**: True obsidian dark UI built with Jetpack Compose (Android) and Compose Multiplatform (Windows Desktop).
-- 🎮 **Gamer-Centric**: Dedicated tools to hunt gigabytes of hidden DirectX/AMD/NVIDIA shader pipelines and game launcher caches.
-- 📸 **Visual Media Purger**: 3-column photo gallery cleaner for WhatsApp and Telegram sent media, stickers, and voice notes.
-- 👻 **Orphan App Cleaner**: Detects and purges orphaned directories left behind by uninstalled applications.
+- 🛡️ **100% Offline & Private**: Zero network permissions required for core cleaning. No analytics, no tracking, and no phoning home.
+- 🎨 **Modern Obsidian Design**: True OLED dark interface crafted with Jetpack Compose (Android) and Compose Multiplatform (Windows Desktop).
+- 🎮 **Gamer-Centric**: Dedicated tools to hunt gigabytes of hidden DirectX, AMD, and NVIDIA pre-compiled shader pipelines and game launcher caches.
+- ⚡ **Zero Bloat, Zero Nagware**: No background services consuming memory, no fake "RAM booster" animations, and no subscription paywalls.
+- 🔍 **Precision Storage Intelligence**: Deep folder heatmaps, heavy file radar, and SHA-256 cryptographic duplicate detection.
 
 ---
 
 ## ✨ Key Features
 
 ### 🎮 Gamer Ghost Cache & Shader Hunter (Desktop)
-Games frequently leave behind gigabytes of pre-compiled shader blobs and web caches that Windows Disk Cleanup completely ignores:
+Games frequently leave behind gigabytes of pre-compiled shader blobs and web caches that standard disk cleanup tools ignore:
 - **DirectX 12 Shader Pipeline** (`%LOCALAPPDATA%\D3DSCache`)
 - **NVIDIA & AMD Radeon Shader Caches** (`NVIDIA\DXCache`, `AMD\DxCache`)
 - **Game Launcher Caches**: Steam CEF Web Cache, Epic Games, EA Desktop, Ubisoft Connect, Battle.net, and GOG Galaxy.
-- **Offline Match Replays**: Safe detection of temporary buffers and emulator sync files.
+- **Offline Match Replays**: Safe detection of temporary replay buffers and emulator sync files.
 
 ### 🧹 Byte Sweep: Deep Disk & Cache Sanitation
 - **Windows**: Windows Temp, User Temp, SoftwareDistribution download cache, crash dumps, and browser caches (Chrome, Edge, Brave).
-- **Android**: App caches, orphan leftover files from uninstalled apps, empty folder hierarchies, and log dumps.
+- **Android**: App caches, orphaned files left behind by uninstalled apps, empty folder hierarchies, and system logs.
+
+### 📊 Storage Analyzer & Big Files Radar
+- **Volume Heatmaps & Health Bars**: Standardized volume breakdown for mounted drives with 3-tier health indicators.
+- **Deep Target Directory Inspection**: Target your home directory or browse any custom folder (e.g. `SteamLibrary`, `Downloads`, VMs).
+- **Sleek Size Filter Chips & Fast Search**: Instantly isolate files exceeding 25 MB, 50 MB, 100 MB, 500 MB, or 1 GB.
+- **Categorized File Badges**: Visual indicators for executables, archives, media, virtual disks, and audio.
 
 ### 📸 Visual Media Purger (Android)
-- **3-Column Photo Gallery**: Visually inspect all forwarded photos, memes, and stickers before deleting.
-- **Audio Voice Note Preview**: Dedicated audio player card with instant play/pause to listen to voice notes before purging.
+- **3-Column Photo Gallery**: Visually inspect forwarded photos, memes, and stickers before deleting.
+- **Audio Voice Note Preview**: Integrated audio player card with instant play/pause to listen to voice notes before purging.
 - **Batch Deletion**: One-tap selection per category with live reclaimed storage estimation.
-
-### 📊 Storage Analyzer & Heavy File Radar
-- **Tree-map and drive breakdown**: Instant inspection of which folders consume the most disk real estate.
-- **Configurable Thresholds**: Filter files exceeding 25 MB, 100 MB, 500 MB, or 1 GB.
 
 ### 👯 Duplicate File Hunter
 - **Cryptographic SHA-256 Hashing**: 100% accurate identical file detection (zero false positives).
 - **Smart Preservation**: "Keep Oldest (Original)" or "Keep Cleanest Path" auto-selection.
 
 ### ⚡ Windows Startup Boost
-- Manage autorun registries, Startup folders, and Task Manager launch impact.
+- Manage autorun registries, Startup folders, and Task Manager launch impact with zero background footprint.
 
 ---
 
@@ -108,19 +104,11 @@ To run directly during development:
 
 ## 💖 Sponsoring & Supporting Development
 
-BytePurge is independent, free, and open-source software. If BytePurge saved you disk space or saved you from paying for commercial cleaner subscriptions, please consider supporting development!
+BytePurge is independent, free, and open-source software. If BytePurge saved you disk space or saved you from commercial cleaner subscriptions, please consider supporting development!
 
 - **GitHub Sponsors**: [github.com/sponsors/cosmomime](https://github.com/sponsors/cosmomime) *(0% platform fee)*
 
 All sponsors are credited in our in-app **Hall of Fame**!
-
----
-
-## 🙏 Acknowledgments & Inspiration
-
-BytePurge takes architectural and philosophical inspiration from open-source giants that paved the way for transparent software:
-- **SD Maid / SD Maid 2/SE** by [darken](https://github.com/d4rken-org): The pioneer of modern Android maintenance tools and ethical utility design.
-- **BleachBit** by Andrew Ziem: The grandfather of open-source desktop cleanup.
 
 ---
 

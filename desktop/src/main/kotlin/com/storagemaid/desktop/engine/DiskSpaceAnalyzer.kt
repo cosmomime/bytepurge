@@ -17,7 +17,9 @@ class DiskSpaceAnalyzer {
                 val free = root.usableSpace
                 val used = (total - free).coerceAtLeast(0L)
                 if (total > 0) {
-                    val label = if (root.path.startsWith("C")) "System Drive (C:)" else "Storage Volume (${root.path})"
+                    val cleanPath = root.path.replace("\\", "").trim()
+                    val isSystem = cleanPath.startsWith("C", ignoreCase = true) || cleanPath == "/" || cleanPath.isEmpty()
+                    val label = if (isSystem) "System (${if (cleanPath == "/" || cleanPath.isEmpty()) "Root" else "C:"})" else "Drive ($cleanPath)"
                     drives.add(
                         DriveOverview(
                             rootPath = root.absolutePath,
@@ -39,7 +41,7 @@ class DiskSpaceAnalyzer {
         if (!directory.exists() || !directory.canRead()) return emptyList()
 
         fun walk(dir: File, depth: Int) {
-            if (depth > 6 || results.size >= 1000) return
+            if (depth > 5 || results.size >= 250) return
             val children = dir.listFiles() ?: return
 
             for (child in children) {
@@ -57,7 +59,14 @@ class DiskSpaceAnalyzer {
                                 )
                             )
                         }
-                    } else if (child.isDirectory && !child.name.startsWith(".") && child.name != "node_modules" && child.name != "\$Recycle.Bin") {
+                    } else if (child.isDirectory &&
+                        !child.name.startsWith(".") &&
+                        child.name != "node_modules" &&
+                        child.name != "\$Recycle.Bin" &&
+                        !child.name.equals("AppData", ignoreCase = true) &&
+                        !child.name.equals("Windows", ignoreCase = true) &&
+                        !child.name.equals("ProgramData", ignoreCase = true)
+                    ) {
                         walk(child, depth + 1)
                     }
                 } catch (_: Exception) {}

@@ -33,7 +33,9 @@ compose.desktop {
     }
 }
 
-tasks.register<JavaExec>("runSnapshot") {
-    mainClass.set("com.storagemaid.desktop.DesktopSnapshotRunner")
-    classpath = sourceSets["main"].runtimeClasspath
+if (file("src/main/kotlin/com/storagemaid/desktop/DesktopSnapshotRunner.kt").exists()) {
+    tasks.register<JavaExec>("runSnapshot") {
+        mainClass.set("com.storagemaid.desktop.DesktopSnapshotRunner")
+        classpath = sourceSets["main"].runtimeClasspath
+    }
 }

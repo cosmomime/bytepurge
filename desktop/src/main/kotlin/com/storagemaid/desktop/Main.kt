@@ -55,7 +55,8 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = "BytePurge - Offline Storage Cleaner & Shader Hunter",
-        state = windowState
+        state = windowState,
+        icon = androidx.compose.ui.res.painterResource("icon.png")
     ) {
         StorageMaidDesktopTheme {
             Surface(
