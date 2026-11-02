@@ -14,15 +14,9 @@
 <br/>
 
 <p align="center">
-  <img src="docs/screenshots/desktop_home.png" width="62%" alt="BytePurge Windows Desktop Home Hub" />
+  <img src="docs/screenshots/desktop_home.png" width="62%" alt="BytePurge Windows Desktop Dashboard" />
   &nbsp;
   <img src="docs/screenshots/android_dashboard.png" width="31%" alt="BytePurge Android Dashboard" />
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/desktop_gamer.png" width="31%" alt="Gamer Shader Hunter" />
-  <img src="docs/screenshots/desktop_sweep.png" width="31%" alt="Byte Sweep" />
-  <img src="docs/screenshots/desktop_analyzer.png" width="31%" alt="Disk Space Analyzer" />
 </p>
 
 </div>
