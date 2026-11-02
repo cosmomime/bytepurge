@@ -53,7 +53,6 @@ fun DashboardScreen(
     val isCleaning by viewModel.isCleaning.collectAsState()
     val cleanProgress by viewModel.cleanProgress.collectAsState()
     val lastCleanResult by viewModel.lastCleanResult.collectAsState()
-    val isSoundEnabled by viewModel.isSoundEnabled.collectAsState()
 
     var showCleanConfirmDialog by remember { mutableStateOf(false) }
     var showSettingsSheet by remember { mutableStateOf(false) }
@@ -89,13 +88,6 @@ fun DashboardScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = { viewModel.toggleSound() }) {
-                        Icon(
-                            imageVector = if (isSoundEnabled) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff,
-                            contentDescription = if (isSoundEnabled) "Mute Sound" else "Enable Sound",
-                            tint = if (isSoundEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
                     IconButton(onClick = {
                         when (currentTab) {
                             AppTab.SWEEP -> viewModel.refreshStorageOverview()

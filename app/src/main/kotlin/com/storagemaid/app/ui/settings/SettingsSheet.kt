@@ -112,6 +112,30 @@ fun SettingsBottomSheet(
                     }
                 }
 
+                // Section 2: Sound & Audio Feedback
+                item {
+                    SettingsCard(title = "Sound & Audio Feedback") {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text("Retro Sound Effects", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                                Text(
+                                    "Play audio cues during scan completion, trash purges, and celebration dialogs.",
+                                    fontSize = 12.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                            Switch(
+                                checked = isSoundEnabled,
+                                onCheckedChange = { viewModel.toggleSound() }
+                            )
+                        }
+                    }
+                }
+
                 // Section 3: Scanning & Deduplication Rules
                 item {
                     SettingsCard(title = "Cleaning & Scanning Rules") {
@@ -267,36 +291,18 @@ fun SettingsBottomSheet(
                         )
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        Row(
+                        Button(
+                            onClick = {
+                                try { uriHandler.openUri("https://github.com/sponsors/cosmomime") } catch (_: Exception) {}
+                            },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEA4AAA)), // GitHub Sponsor Pink
+                            shape = RoundedCornerShape(10.dp),
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            contentPadding = PaddingValues(vertical = 10.dp)
                         ) {
-                            Button(
-                                onClick = {
-                                    try { uriHandler.openUri("https://github.com/sponsors/cosmomime") } catch (_: Exception) {}
-                                },
-                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEA4AAA)), // GitHub Sponsor Pink
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.weight(1f),
-                                contentPadding = PaddingValues(vertical = 8.dp)
-                            ) {
-                                Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(modifier = Modifier.width(6.dp))
-                                Text("Sponsor", fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                            }
-
-                            OutlinedButton(
-                                onClick = {
-                                    try { uriHandler.openUri("https://ko-fi.com/cosmomime") } catch (_: Exception) {}
-                                },
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.weight(1f),
-                                contentPadding = PaddingValues(vertical = 8.dp)
-                            ) {
-                                Icon(Icons.Default.Coffee, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(modifier = Modifier.width(6.dp))
-                                Text("Ko-fi / Tip", fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                            }
+                            Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Sponsor on GitHub", fontSize = 13.sp, fontWeight = FontWeight.Bold)
                         }
 
                         Spacer(modifier = Modifier.height(8.dp))
