@@ -12,6 +12,14 @@
 
 *No subscriptions. No full-screen ads. No telemetry. Just clean, honest byte-level storage reclamation.*
 
+<br/>
+
+<p align="center">
+  <img src="docs/screenshots/desktop_sweep.png" width="60%" alt="BytePurge Windows Desktop" />
+  &nbsp;
+  <img src="docs/screenshots/android_dashboard.png" width="32%" alt="BytePurge Android" />
+</p>
+
 </div>
 
 ---

@@ -8,7 +8,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.storagemaid.app"
+        applicationId = "com.cosmomime.bytepurge"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
