@@ -107,6 +107,7 @@ To run directly during development:
 BytePurge is independent, free, and open-source software. If BytePurge saved you disk space or saved you from commercial cleaner subscriptions, please consider supporting development!
 
 - **GitHub Sponsors**: [github.com/sponsors/cosmomime](https://github.com/sponsors/cosmomime) *(0% platform fee)*
+- **Patreon**: [patreon.com/CosmoMime](https://www.patreon.com/CosmoMime)
 
 All sponsors are credited in our in-app **Hall of Fame**!
 
