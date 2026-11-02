@@ -41,6 +41,7 @@ class WindowsJunkScanner {
         }
 
         // 4. Browser Caches
+        val appData = System.getenv("APPDATA")
         if (localAppData != null) {
             val chromeCache = File(localAppData, "Google\\Chrome\\User Data\\Default\\Cache\\Cache_Data")
             if (chromeCache.exists()) {
@@ -54,20 +55,41 @@ class WindowsJunkScanner {
             if (braveCache.exists()) {
                 scanDirectory(braveCache, DesktopJunkCategory.BROWSER_CACHE, resultMap, maxDepth = 1)
             }
+            val vivaldiCache = File(localAppData, "Vivaldi\\User Data\\Default\\Cache\\Cache_Data")
+            if (vivaldiCache.exists()) {
+                scanDirectory(vivaldiCache, DesktopJunkCategory.BROWSER_CACHE, resultMap, maxDepth = 1)
+            }
+        }
+        if (appData != null) {
+            val operaCache = File(appData, "Opera Software\\Opera Stable\\Cache\\Cache_Data")
+            if (operaCache.exists()) {
+                scanDirectory(operaCache, DesktopJunkCategory.BROWSER_CACHE, resultMap, maxDepth = 1)
+            }
+            val operaGxCache = File(appData, "Opera Software\\Opera GX Stable\\Cache\\Cache_Data")
+            if (operaGxCache.exists()) {
+                scanDirectory(operaGxCache, DesktopJunkCategory.BROWSER_CACHE, resultMap, maxDepth = 1)
+            }
         }
 
-        // 5. Desktop App Caches (Discord, Spotify)
-        val appData = System.getenv("APPDATA")
+        // 5. Desktop App Caches (Discord, Spotify, VS Code)
         if (appData != null) {
             val discordCache = File(appData, "discord\\Cache\\Cache_Data")
             if (discordCache.exists()) {
                 scanDirectory(discordCache, DesktopJunkCategory.APP_CACHE, resultMap, maxDepth = 1)
+            }
+            val vscodeCache = File(appData, "Code\\Cache\\Cache_Data")
+            if (vscodeCache.exists()) {
+                scanDirectory(vscodeCache, DesktopJunkCategory.APP_CACHE, resultMap, maxDepth = 1)
             }
         }
         if (localAppData != null) {
             val spotifyStorage = File(localAppData, "Spotify\\Storage")
             if (spotifyStorage.exists()) {
                 scanDirectory(spotifyStorage, DesktopJunkCategory.APP_CACHE, resultMap, maxDepth = 1)
+            }
+            val spotifyData = File(localAppData, "Spotify\\Data")
+            if (spotifyData.exists()) {
+                scanDirectory(spotifyData, DesktopJunkCategory.APP_CACHE, resultMap, maxDepth = 1)
             }
         }
 
@@ -81,8 +103,10 @@ class WindowsJunkScanner {
         currentDepth: Int = 0,
         maxDepth: Int = 2
     ) {
-        if (!dir.exists() || !dir.isDirectory || currentDepth > maxDepth) return
-        val files = dir.listFiles() ?: return
+        if (!dir.exists() || !dir.isDirectory || !dir.canRead() || currentDepth > maxDepth) return
+        val currentCount = result[category]?.size ?: 0
+        if (currentCount >= 2000) return
+        val files = try { dir.listFiles() } catch (_: Throwable) { null } ?: return
 
         for (f in files) {
             try {
@@ -103,7 +127,7 @@ class WindowsJunkScanner {
                 } else if (f.isDirectory) {
                     scanDirectory(f, category, result, currentDepth + 1, maxDepth)
                 }
-            } catch (_: Exception) {}
+            } catch (_: Throwable) {}
         }
     }
 

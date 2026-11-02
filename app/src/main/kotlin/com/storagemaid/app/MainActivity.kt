@@ -62,6 +62,7 @@ class MainActivity : ComponentActivity() {
         super.onResume()
         checkPermissions()
         viewModel.refreshStorageOverview()
+        viewModel.pruneUninstalledApps(packageManager)
     }
 
     private fun checkPermissions() {

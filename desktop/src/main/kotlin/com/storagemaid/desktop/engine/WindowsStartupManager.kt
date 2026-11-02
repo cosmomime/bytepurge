@@ -66,7 +66,7 @@ class WindowsStartupManager {
     private fun queryRegistry(regPath: String, isEnabled: Boolean): List<DesktopStartupItem> {
         val results = mutableListOf<DesktopStartupItem>()
         try {
-            val process = ProcessBuilder("reg", "query", regPath).start()
+            val process = ProcessBuilder("reg", "query", regPath).redirectErrorStream(true).start()
             val reader = BufferedReader(InputStreamReader(process.inputStream))
             var line: String?
 
@@ -91,7 +91,7 @@ class WindowsStartupManager {
                     )
                 }
             }
-            process.waitFor()
+            process.waitFor(3, java.util.concurrent.TimeUnit.SECONDS)
         } catch (_: Exception) {}
         return results
     }

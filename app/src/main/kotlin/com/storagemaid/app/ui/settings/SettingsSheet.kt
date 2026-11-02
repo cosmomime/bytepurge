@@ -280,48 +280,9 @@ fun SettingsBottomSheet(
                     }
                 }
 
-                // Section 4: Support Open Source
+                // Section 4: App Information
                 item {
                     val uriHandler = androidx.compose.ui.platform.LocalUriHandler.current
-                    SettingsCard(title = "Support Open Source Development") {
-                        Text(
-                            text = "BytePurge is 100% free, offline, and open-source under GPLv3. If it helped reclaim your storage, consider sponsoring to keep it independent and ad-free!",
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                        Spacer(modifier = Modifier.height(12.dp))
-
-                        Button(
-                            onClick = {
-                                try { uriHandler.openUri("https://github.com/sponsors/cosmomime") } catch (_: Exception) {}
-                            },
-                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEA4AAA)), // GitHub Sponsor Pink
-                            shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.fillMaxWidth(),
-                            contentPadding = PaddingValues(vertical = 10.dp)
-                        ) {
-                            Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("Sponsor on GitHub", fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                        }
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        TextButton(
-                            onClick = {
-                                try { uriHandler.openUri("https://github.com/cosmomime/bytepurge") } catch (_: Exception) {}
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            Icon(Icons.Default.Code, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Text("View Source Code (GPLv3 on GitHub)", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary)
-                        }
-                    }
-                }
-
-                // Section 5: App Information
-                item {
                     SettingsCard(title = "About BytePurge") {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -354,12 +315,23 @@ fun SettingsBottomSheet(
                                 )
                             }
                         }
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
                         Text(
                             text = "Zero telemetry, zero trackers, and no background analytics.",
                             fontSize = 11.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        TextButton(
+                            onClick = {
+                                try { uriHandler.openUri("https://github.com/cosmomime/bytepurge") } catch (_: Exception) {}
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(Icons.Default.Code, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text("View Source Code (GPLv3 on GitHub)", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary)
+                        }
                     }
                 }
             }

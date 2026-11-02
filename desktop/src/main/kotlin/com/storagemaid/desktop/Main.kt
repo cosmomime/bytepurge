@@ -27,10 +27,12 @@ import com.storagemaid.desktop.ui.analyzer.DesktopAnalyzerView
 import com.storagemaid.desktop.ui.duplicates.DesktopDuplicatesView
 import com.storagemaid.desktop.ui.gamer.DesktopGamerJunkView
 import com.storagemaid.desktop.ui.squeezer.DesktopMediaSqueezerView
+import com.storagemaid.desktop.ui.home.DesktopHomeView
 import com.storagemaid.desktop.ui.startup.DesktopStartupView
 import com.storagemaid.desktop.ui.sweep.DesktopSweepView
 
 enum class DesktopNavTab(val label: String, val icon: ImageVector) {
+    HOME("Home Hub", Icons.Default.Home),
     SWEEP("Byte Sweep", Icons.Default.CleaningServices),
     GAMER("Gamer Hunter", Icons.Default.SportsEsports),
     STARTUP("Startup Boost", Icons.Default.RocketLaunch),
@@ -39,25 +41,33 @@ enum class DesktopNavTab(val label: String, val icon: ImageVector) {
     DUPLICATES("Duplicate Hunter", Icons.Default.ContentCopy)
 }
 
-fun main() = application {
-    val windowState = rememberWindowState(width = 1120.dp, height = 760.dp)
+fun main() {
+    Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+        System.err.println("BytePurge uncaught error in ${thread.name}: ${throwable.message}")
+        throwable.printStackTrace()
+    }
+    application {
+        val windowState = rememberWindowState(width = 1120.dp, height = 760.dp)
 
-    val junkScanner = remember { WindowsJunkScanner() }
-    val gamerScanner = remember { GamerJunkScanner() }
-    val startupManager = remember { WindowsStartupManager() }
-    val squeezerEngine = remember { MediaSqueezerEngine() }
-    val diskAnalyzer = remember { DiskSpaceAnalyzer() }
-    val duplicateScanner = remember { DesktopDuplicateScanner() }
-    val similarScanner = remember { DesktopSimilarPhotoScanner() }
+        val junkScanner = remember { WindowsJunkScanner() }
+        val gamerScanner = remember { GamerJunkScanner() }
+        val startupManager = remember { WindowsStartupManager() }
+        val squeezerEngine = remember { MediaSqueezerEngine() }
+        val diskAnalyzer = remember { DiskSpaceAnalyzer() }
+        val duplicateScanner = remember { DesktopDuplicateScanner() }
+        val similarScanner = remember { DesktopSimilarPhotoScanner() }
 
-    var currentTab by remember { mutableStateOf(DesktopNavTab.SWEEP) }
+        var currentTab by remember { mutableStateOf(DesktopNavTab.HOME) }
 
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "BytePurge - Offline Storage Cleaner & Shader Hunter",
-        state = windowState,
-        icon = androidx.compose.ui.res.painterResource("icon.png")
-    ) {
+        Window(
+            onCloseRequest = {
+                exitApplication()
+                kotlin.system.exitProcess(0)
+            },
+            title = "BytePurge - Offline Storage Cleaner & Shader Hunter",
+            state = windowState,
+            icon = androidx.compose.ui.res.painterResource("icon.png")
+        ) {
         StorageMaidDesktopTheme {
             Surface(
                 modifier = Modifier.fillMaxSize(),
@@ -104,122 +114,91 @@ fun main() = application {
                                 }
                             }
 
-                            Spacer(modifier = Modifier.height(24.dp))
+                            Spacer(modifier = Modifier.height(18.dp))
 
-                            // Navigation Items
-                            DesktopNavTab.values().forEach { tab ->
-                                val isSelected = currentTab == tab
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clip(RoundedCornerShape(10.dp))
-                                        .background(
-                                            if (isSelected) MaterialTheme.colorScheme.primaryContainer else androidx.compose.ui.graphics.Color.Transparent
-                                        )
-                                        .clickable { currentTab = tab }
-                                        .padding(horizontal = if (isCompact) 10.dp else 14.dp, vertical = 10.dp),
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = if (isCompact) Arrangement.Center else Arrangement.Start
-                                ) {
-                                    Icon(
-                                        imageVector = tab.icon,
-                                        contentDescription = tab.label,
-                                        tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                                        modifier = Modifier.size(20.dp)
+                            // Categorized Navigation Groups
+                            val navGroups = remember {
+                                listOf(
+                                    "OVERVIEW" to listOf(DesktopNavTab.HOME),
+                                    "CLEAN UP" to listOf(DesktopNavTab.SWEEP, DesktopNavTab.ANALYZER, DesktopNavTab.SQUEEZER),
+                                    "PERFORMANCE" to listOf(DesktopNavTab.GAMER, DesktopNavTab.STARTUP),
+                                    "PRIVACY" to listOf(DesktopNavTab.DUPLICATES)
+                                )
+                            }
+
+                            navGroups.forEach { (sectionTitle, tabs) ->
+                                if (!isCompact) {
+                                    Text(
+                                        text = sectionTitle,
+                                        fontSize = 10.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        color = TextSecondary.copy(alpha = 0.5f),
+                                        letterSpacing = 1.1.sp,
+                                        modifier = Modifier.padding(start = 10.dp, top = 10.dp, bottom = 4.dp)
                                     )
-                                    if (!isCompact) {
-                                        Spacer(modifier = Modifier.width(12.dp))
-                                        Text(
-                                            tab.label,
-                                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                                            fontSize = 13.sp,
-                                            color = if (isSelected) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
                                 }
-                                Spacer(modifier = Modifier.height(4.dp))
+
+                                tabs.forEach { tab ->
+                                    val isSelected = currentTab == tab
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .clip(RoundedCornerShape(10.dp))
+                                            .background(
+                                                if (isSelected) MaterialTheme.colorScheme.primaryContainer else androidx.compose.ui.graphics.Color.Transparent
+                                            )
+                                            .clickable { currentTab = tab }
+                                            .padding(horizontal = if (isCompact) 10.dp else 12.dp, vertical = 9.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = if (isCompact) Arrangement.Center else Arrangement.Start
+                                    ) {
+                                        Icon(
+                                            imageVector = tab.icon,
+                                            contentDescription = tab.label,
+                                            tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                                            modifier = Modifier.size(19.dp)
+                                        )
+                                        if (!isCompact) {
+                                            Spacer(modifier = Modifier.width(10.dp))
+                                            Text(
+                                                tab.label,
+                                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                                                fontSize = 13.sp,
+                                                color = if (isSelected) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.height(2.dp))
+                                }
                             }
                         }
 
                         // Footer
-                        if (isCompact) {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Surface(
-                                    shape = RoundedCornerShape(8.dp),
-                                    color = Color(0xFFEA4AAA).copy(alpha = 0.15f),
-                                    modifier = Modifier.size(40.dp).clickable {
-                                        try { Desktop.getDesktop().browse(URI("https://github.com/sponsors/cosmomime")) } catch (_: Exception) {}
-                                    }
+                        if (!isCompact) {
+                            Column(modifier = Modifier.padding(horizontal = 4.dp)) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Icon(Icons.Default.Favorite, contentDescription = "Sponsor on GitHub", tint = Color(0xFFEA4AAA), modifier = Modifier.size(18.dp))
-                                    }
+                                    Text(
+                                        "BytePurge v1.0.0",
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                    Text(
+                                        " • GPL-3.0",
+                                        fontSize = 11.sp,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                                    )
                                 }
 
-                                Surface(
-                                    shape = RoundedCornerShape(8.dp),
-                                    color = SafeGreen.copy(alpha = 0.12f),
-                                    modifier = Modifier.size(40.dp)
-                                ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Icon(Icons.Default.Shield, contentDescription = "Offline / Zero Telemetry", tint = SafeGreen, modifier = Modifier.size(18.dp))
-                                    }
-                                }
-                            }
-                        } else {
-                            Column {
-                                Surface(
-                                    shape = RoundedCornerShape(8.dp),
-                                    color = Color(0xFFEA4AAA).copy(alpha = 0.12f),
-                                    modifier = Modifier.fillMaxWidth().clickable {
-                                        try { Desktop.getDesktop().browse(URI("https://github.com/sponsors/cosmomime")) } catch (_: Exception) {}
-                                    }
-                                ) {
-                                    Row(
-                                        modifier = Modifier.padding(10.dp),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Icon(Icons.Default.Favorite, contentDescription = null, tint = Color(0xFFEA4AAA), modifier = Modifier.size(16.dp))
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        Column {
-                                            Text(
-                                                "Sponsor on GitHub",
-                                                fontSize = 11.sp,
-                                                fontWeight = FontWeight.Bold,
-                                                color = Color(0xFFEA4AAA)
-                                            )
-                                            Text(
-                                                "Support open-source",
-                                                fontSize = 9.sp,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                                            )
-                                        }
-                                    }
-                                }
-
-                                Spacer(modifier = Modifier.height(8.dp))
-
-                                Surface(
-                                    shape = RoundedCornerShape(8.dp),
-                                    color = SafeGreen.copy(alpha = 0.12f),
-                                    modifier = Modifier.fillMaxWidth()
-                                ) {
-                                    Row(
-                                        modifier = Modifier.padding(10.dp),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Icon(Icons.Default.Shield, contentDescription = null, tint = SafeGreen, modifier = Modifier.size(16.dp))
-                                        Spacer(modifier = Modifier.width(8.dp))
-                                        Text(
-                                            "100% Offline • GPLv3\nZero Telemetry",
-                                            fontSize = 11.sp,
-                                            fontWeight = FontWeight.SemiBold,
-                                            color = SafeGreen
-                                        )
-                                    }
-                                }
-                                Spacer(modifier = Modifier.height(8.dp))
-                                Text("© 2026 COSMOMIME • Free Software", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
+                                Spacer(modifier = Modifier.height(3.dp))
+                                Text(
+                                    "© 2026 CosmoMime • Free Software",
+                                    fontSize = 10.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.45f)
+                                )
                             }
                         }
                     }
@@ -227,6 +206,9 @@ fun main() = application {
                     // Main Content View
                     Box(modifier = Modifier.fillMaxSize().weight(1f)) {
                         when (currentTab) {
+                            DesktopNavTab.HOME -> DesktopHomeView(
+                                onNavigate = { currentTab = it }
+                            )
                             DesktopNavTab.SWEEP -> DesktopSweepView(junkScanner)
                             DesktopNavTab.GAMER -> DesktopGamerJunkView(gamerScanner)
                             DesktopNavTab.STARTUP -> DesktopStartupView(startupManager)
@@ -239,5 +221,6 @@ fun main() = application {
             }
         }
     }
+}
 }
 }

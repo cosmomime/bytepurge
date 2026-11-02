@@ -17,6 +17,8 @@ val DarkBackground = Color(0xFF0B0D0C)
 val SafeGreen = Color(0xFF2ED573)
 val WarningAmber = Color(0xFFFFA502)
 val DangerRed = Color(0xFFFF4757)
+val TextPrimary = Color(0xFFF8FAFC)
+val TextSecondary = Color(0xFF94A3B8)
 
 // Storage Category Breakdown Colors
 val CategoryVideo = Color(0xFF00D2D3)

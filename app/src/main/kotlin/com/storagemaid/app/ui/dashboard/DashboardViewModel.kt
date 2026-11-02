@@ -1,6 +1,7 @@
 package com.storagemaid.app.ui.dashboard
 
 import android.app.Application
+import android.content.pm.PackageManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.storagemaid.app.core.analyzer.StorageAnalyzer
@@ -817,6 +818,54 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun requestUninstall(packageName: String): Boolean {
         return appManager.requestUninstall(packageName)
+    }
+
+    fun onPackageRemoved(packageName: String) {
+        val current = _allApps.value
+        val updated = current.filter { it.packageName != packageName }
+        if (updated.size != current.size) {
+            _allApps.value = updated
+            val userCount = updated.count { !it.isSystemApp }
+            val systemCount = updated.count { it.isSystemApp }
+            val userBytes = updated.filter { !it.isSystemApp }.sumOf { it.apkSizeBytes }
+            _appSummary.value = AppManagerSummary(
+                totalApps = updated.size,
+                userApps = userCount,
+                systemApps = systemCount,
+                totalUserSizeBytes = userBytes
+            )
+            applyAppFiltersAndSort()
+            refreshStorageOverview()
+        }
+    }
+
+    fun pruneUninstalledApps(packageManager: PackageManager) {
+        val current = _allApps.value
+        if (current.isEmpty()) return
+        val updated = current.filter { app ->
+            try {
+                packageManager.getPackageInfo(app.packageName, 0)
+                true
+            } catch (_: PackageManager.NameNotFoundException) {
+                false
+            } catch (_: Throwable) {
+                true
+            }
+        }
+        if (updated.size != current.size) {
+            _allApps.value = updated
+            val userCount = updated.count { !it.isSystemApp }
+            val systemCount = updated.count { it.isSystemApp }
+            val userBytes = updated.filter { !it.isSystemApp }.sumOf { it.apkSizeBytes }
+            _appSummary.value = AppManagerSummary(
+                totalApps = updated.size,
+                userApps = userCount,
+                systemApps = systemCount,
+                totalUserSizeBytes = userBytes
+            )
+            applyAppFiltersAndSort()
+            refreshStorageOverview()
+        }
     }
 
     fun hasUsageStatsPermission(): Boolean {

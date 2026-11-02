@@ -24,7 +24,7 @@ class ShizukuManager {
             } else {
                 ShizukuStatus.READY
             }
-        } catch (_: Exception) {
+        } catch (_: Throwable) {
             ShizukuStatus.NOT_INSTALLED_OR_RUNNING
         }
     }
@@ -37,7 +37,7 @@ class ShizukuManager {
             if (Shizuku.checkSelfPermission() != PackageManager.PERMISSION_GRANTED) {
                 Shizuku.requestPermission(requestCode)
             }
-        } catch (_: Exception) {}
+        } catch (_: Throwable) {}
     }
 
     suspend fun trimAllSystemCaches(): Pair<Boolean, String> = withContext(Dispatchers.IO) {
