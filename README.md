@@ -2,22 +2,27 @@
 
 # 🧹 BytePurge
 
-**The offline, privacy-first, zero-telemetry storage cleaner, disk analyzer, and shader hunter for Android & Windows.**
+**Fast, thorough storage cleaner, shader cache hunter, and disk analyzer for Android & Windows.**
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Windows-green.svg)](#)
 [![Language](https://img.shields.io/badge/Language-Kotlin%20100%25-purple.svg)](https://kotlinlang.org/)
 [![UI](https://img.shields.io/badge/UI-Jetpack%20Compose%20%26%20Multiplatform-orange.svg)](https://www.jetbrains.com/lp/compose-multiplatform/)
-[![Privacy](https://img.shields.io/badge/Telemetry-Zero%20%2F%20100%25%20Offline-brightgreen.svg)](#)
 
-*No subscriptions. No full-screen ads. No telemetry. Just clean, honest byte-level storage reclamation.*
+*Free and open source. No subscriptions. No ads. No telemetry. Just clean, honest byte-level system optimization.*
 
 <br/>
 
 <p align="center">
-  <img src="docs/screenshots/desktop_sweep.png" width="60%" alt="BytePurge Windows Desktop" />
+  <img src="docs/screenshots/desktop_home.png" width="62%" alt="BytePurge Windows Desktop Home Hub" />
   &nbsp;
-  <img src="docs/screenshots/android_dashboard.png" width="32%" alt="BytePurge Android" />
+  <img src="docs/screenshots/android_dashboard.png" width="31%" alt="BytePurge Android Dashboard" />
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/desktop_gamer.png" width="31%" alt="Gamer Shader Hunter" />
+  <img src="docs/screenshots/desktop_sweep.png" width="31%" alt="Byte Sweep" />
+  <img src="docs/screenshots/desktop_analyzer.png" width="31%" alt="Disk Space Analyzer" />
 </p>
 
 </div>
@@ -26,26 +31,44 @@
 
 ## 🌟 Core Pillars
 
-- 🛡️ **100% Offline & Private**: Zero network permissions required for core cleaning. No analytics, no tracking, and no phoning home.
-- 🎨 **Modern Obsidian Design**: True OLED dark interface crafted with Jetpack Compose (Android) and Compose Multiplatform (Windows Desktop).
-- 🎮 **Gamer-Centric**: Dedicated tools to hunt gigabytes of hidden DirectX, AMD, and NVIDIA pre-compiled shader pipelines and game launcher caches.
-- ⚡ **Zero Bloat, Zero Nagware**: No background services consuming memory, no fake "RAM booster" animations, and no subscription paywalls.
-- 🔍 **Precision Storage Intelligence**: Deep folder heatmaps, heavy file radar, and SHA-256 cryptographic duplicate detection.
+- 🛡️ **Safe & Local Processing**: All scanning and file inspections execute strictly on your device. Safe by default—review candidate files before confirming any deletion.
+- 🎨 **Modern Cyber-Obsidian Design**: True dark interface crafted with Jetpack Compose (Android) and Compose Multiplatform (Windows Desktop).
+- 🎮 **Gamer-Centric Optimization**: Dedicated tools to hunt gigabytes of hidden DirectX, Vulkan, AMD, and NVIDIA pre-compiled shader pipelines, launcher vault caches, and game logs.
+- ⚡ **Zero Bloat, Zero Nagware**: No background services consuming idle RAM, no fake "RAM booster" animations, and no commercial paywalls.
+- 🔍 **Precision Storage Intelligence**: Deep folder heatmaps, heavy file radar, real-time uninstallation detection, and SHA-256 cryptographic duplicate detection.
 
 ---
 
 ## ✨ Key Features
 
+### 🏠 System Optimization Hub (Desktop)
+A clean, unified desktop home interface built for quick, goal-driven actions:
+- **Free Up Space**: Instantly scan and purge temporary files, app logs, and browser clutter.
+- **Boost Gaming Speed**: Target bloated GPU shaders, game launcher caches, and DirectX debris.
+- **Analyze Storage**: Jump directly into disk treemaps, pinpoint massive files, and detect duplicates.
+- **Live Drive Health Gauge**: Real-time System Drive (C:) utilization meter and Windows boot optimizer.
+
 ### 🎮 Gamer Ghost Cache & Shader Hunter (Desktop)
-Games frequently leave behind gigabytes of pre-compiled shader blobs and web caches that standard disk cleanup tools ignore:
+Games frequently leave behind tens of gigabytes of pre-compiled shader blobs and web caches that standard Windows disk cleanup tools ignore:
 - **DirectX 12 Shader Pipeline** (`%LOCALAPPDATA%\D3DSCache`)
-- **NVIDIA & AMD Radeon Shader Caches** (`NVIDIA\DXCache`, `AMD\DxCache`)
-- **Game Launcher Caches**: Steam CEF Web Cache, Epic Games, EA Desktop, Ubisoft Connect, Battle.net, and GOG Galaxy.
-- **Offline Match Replays**: Safe detection of temporary replay buffers and emulator sync files.
+- **NVIDIA & AMD Driver Caches**: `%LOCALAPPDATA%\NVIDIA\DXCache`, `NV_Cache`, `AppData\LocalLow\NVIDIA\PerDriverVersion`, and AMD `DxCache`, `GLCache`, `VkCache`.
+- **Steam Shader Pre-Cache**: Stale compiled shaders in `Steam\steamapps\shadercache`.
+- **Epic Games VaultCache**: Pre-downloaded game chunks and staging caches (often 30–80 GB).
+- **Game Launcher Caches**: Steam CEF Web Cache, EA Desktop App, Origin Legacy, Ubisoft Connect, Rockstar Games Launcher, Xbox App cache, Battle.net, and GOG Galaxy.
+- **Engine Shaders**: Unity Engine shader caches (`%LOCALAPPDATA%\Unity\cache`).
 
 ### 🧹 Byte Sweep: Deep Disk & Cache Sanitation
-- **Windows**: Windows Temp, User Temp, SoftwareDistribution download cache, crash dumps, and browser caches (Chrome, Edge, Brave).
+- **Windows**: Windows Temp, User Temp, SoftwareDistribution download cache, crash dumps, and minidumps.
+- **Browser Caches**: Google Chrome, Microsoft Edge, Brave, Opera, Opera GX, and Vivaldi.
+- **App Data Caches**: Visual Studio Code, Discord, and Spotify.
 - **Android**: App caches, orphaned files left behind by uninstalled apps, empty folder hierarchies, and system logs.
+
+### 📱 Smart App Manager & Uninstaller (Android)
+- **100% Full-Screen Scroll**: Summary and permission banners scroll away naturally inside the list for maximum screen browsing.
+- **Instant Uninstallation**: 1-tap direct uninstallation buttons with compact ~70dp cards showing monospace package IDs, APK sizes, and app data breakdown.
+- **Real-Time Package Removal**: Integrated `BroadcastReceiver` (`ACTION_PACKAGE_REMOVED`) and activity result callbacks ensure uninstalled apps vanish instantly without requiring a manual refresh.
+- **Rootless System Cache Trimming**: Optional Shizuku Wireless ADB integration to execute `pm trim-caches` across all applications without root.
+- **APK Archiver**: One-tap APK extraction and APK sharing.
 
 ### 📊 Storage Analyzer & Big Files Radar
 - **Volume Heatmaps & Health Bars**: Standardized volume breakdown for mounted drives with 3-tier health indicators.
@@ -63,7 +86,7 @@ Games frequently leave behind gigabytes of pre-compiled shader blobs and web cac
 - **Smart Preservation**: "Keep Oldest (Original)" or "Keep Cleanest Path" auto-selection.
 
 ### ⚡ Windows Startup Boost
-- Manage autorun registries, Startup folders, and Task Manager launch impact with zero background footprint.
+- Manage autorun registries (`HKCU\Run`, `HKLM\Run`) and Startup folders with safety timeouts and zero background footprint.
 
 ---
 
@@ -104,12 +127,10 @@ To run directly during development:
 
 ## 💖 Sponsoring & Supporting Development
 
-BytePurge is independent, free, and open-source software. If BytePurge saved you disk space or saved you from commercial cleaner subscriptions, please consider supporting development!
+BytePurge is independent, free, and open-source software under GPL-3.0. If BytePurge helped reclaim your storage and keep your PC or phone running fast, please consider supporting continued open-source development!
 
 - **GitHub Sponsors**: [github.com/sponsors/cosmomime](https://github.com/sponsors/cosmomime) *(0% platform fee)*
 - **Patreon**: [patreon.com/CosmoMime](https://www.patreon.com/CosmoMime)
-
-All sponsors are credited in our in-app **Hall of Fame**!
 
 ---
 
@@ -118,7 +139,7 @@ All sponsors are credited in our in-app **Hall of Fame**!
 BytePurge is licensed under the **GNU General Public License v3.0 (GPLv3)**. See [LICENSE](LICENSE) for full details.
 
 ```
-BytePurge - Offline, privacy-first storage cleaner and shader hunter
+BytePurge - Fast, thorough storage cleaner, shader cache hunter, and disk analyzer
 Copyright (C) 2026 BytePurge Contributors
 
 This program is free software: you can redistribute it and/or modify
