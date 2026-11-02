@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BytePurge</string>
+    <string name="clean_now">Safe Purge Now</string>
+    <string name="scan_storage">Scan Storage</string>
+    <string name="scanning">Scanning storage…</string>
+    <string name="clean_complete">Purge Complete</string>
+    <string name="reclaimable">Reclaimable Space</string>
+    <string name="corpse_finder">Orphan File Finder</string>
+    <string name="corpse_finder_desc">Leftover folders from uninstalled apps</string>
+    <string name="system_scrubber">System Scrubber</string>
+    <string name="system_scrubber_desc">Temporary files, crash logs, empty folders</string>
+    <string name="media_cleaner">Social Media Purger</string>
+    <string name="media_cleaner_desc">Stale voice notes, sent duplicates, stickers</string>
+    <string name="empty_folders">Empty Folders</string>
+    <string name="empty_folders_desc">Directory trees with zero content</string>
+    <string name="channel_scan_progress">Scan &amp; Purge Progress</string>
+    <string name="widget_description">Live storage meter and one-tap quick purge shortcut.</string>
+</resources>
