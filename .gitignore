@@ -59,6 +59,8 @@ render.experimental.xml
 # OS specific
 .DS_Store
 Thumbs.db
+*.bat
+!gradlew.bat
 
 # Kotlin / Compose Multiplatform
 .kotlin/
