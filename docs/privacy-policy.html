@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Cleaner: Cache &amp; Junk &mdash; Privacy Policy</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --safe-bg: #ecfdf5;
+            --safe-border: #10b981;
+            --safe-text: #065f46;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0b0e14;
+                --surface: #121722;
+                --text: #e2e8f0;
+                --muted: #94a3b8;
+                --border: #1f2937;
+                --accent: #3b82f6;
+                --accent-soft: rgba(59, 130, 246, 0.12);
+                --safe-bg: rgba(16, 185, 129, 0.12);
+                --safe-border: rgba(16, 185, 129, 0.45);
+                --safe-text: #6ee7b7;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            color: var(--text);
+            background-color: var(--bg);
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+        .card {
+            background-color: var(--surface);
+            padding: 32px 28px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        .brand img {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.65rem;
+            color: var(--text);
+        }
+        .subtitle {
+            margin-top: 6px;
+            font-size: 0.92rem;
+            color: var(--muted);
+        }
+        h2 {
+            margin-top: 28px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-size: 1.02rem;
+        }
+        ul {
+            padding-left: 22px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .safe-banner {
+            background-color: var(--safe-bg);
+            border: 1px solid var(--safe-border);
+            color: var(--safe-text);
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 18px 0;
+            text-align: center;
+        }
+        .callout {
+            background-color: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            border-radius: 0 10px 10px 0;
+            margin: 18px 0;
+        }
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.9em;
+            padding: 2px 6px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.86rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="brand">
+        <img src="icon.png" alt="Storage Cleaner App Icon">
+        <h1>Privacy Policy</h1>
+        <div class="subtitle">
+            <strong>Storage Cleaner: Cache &amp; Junk</strong> (<code>com.cosmomime.bytepurge</code>)<br>
+            Developer: <strong>COSMOMIME</strong> &bull; Last Updated: November 16, 2026
+        </div>
+    </div>
+
+    <p>COSMOMIME built <strong>Storage Cleaner: Cache &amp; Junk</strong> (the &ldquo;App&rdquo;) as an on-device Android storage management utility with optional Pro features available via Google Play In-App Purchases and Subscriptions.</p>
+    <p>This Privacy Policy explains what information the App accesses on your device, why specific Android permissions are requested, and how your data is protected.</p>
+
+    <div class="safe-banner">
+        100% On-Device Processing &mdash; Your files, photos, videos, filenames, and installed app lists are never uploaded, collected, or sold.
+    </div>
+
+    <h2>1. Information We Access (Strictly On-Device)</h2>
+    <p>The App does not require user registration, accounts, emails, or logins. All scanning, duplicate detection, file inspection, and media compression happen locally on your Android device.</p>
+
+    <div class="callout">
+        <strong>Stored Locally Only:</strong> Your clean history summary (<code>Savings Log</code>), protected folder whitelist, threshold settings, and Pro entitlement cache stay strictly inside private Android app storage on your device.
+    </div>
+
+    <h2>2. Android Permissions &amp; How They Are Used</h2>
+    <ul>
+        <li><strong>All Files Access (<code>MANAGE_EXTERNAL_STORAGE</code> / Storage Permissions):</strong> Required solely to scan device directories for orphaned uninstalled-app leftovers (e.g., inside <code>Android/data</code> and <code>Android/obb</code>), temporary caches, empty folders, large files, exact duplicates, visually similar photos, messenger media, downloaded files, APK installers, and to perform user-initiated deletions or photo/video compression. No file contents or paths leave your device.</li>
+        <li><strong>Query Installed Apps (<code>QUERY_ALL_PACKAGES</code>):</strong> Used locally to display installed user and system apps in <strong>App Manager</strong>, match residual folders against currently installed packages to avoid deleting active app data, and launch system uninstall/app info screens or extract user-selected APK backups. We do not collect or transmit your list of installed applications.</li>
+        <li><strong>Package Usage Access (<code>PACKAGE_USAGE_STATS</code>, Optional):</strong> Used locally on Android to calculate accurate per-app code, data, and cache sizes in <strong>App Manager</strong>. Usage data is never logged remotely or shared.</li>
+        <li><strong>Notifications &amp; Foreground Service (<code>POST_NOTIFICATIONS</code>, <code>FOREGROUND_SERVICE</code>):</strong> Used to display real-time scan/cleanup progress notifications and optional Pro <strong>Storage Sentinel</strong> low-storage reminders.</li>
+        <li><strong>Shizuku Integration (Optional User-Initiated Tool):</strong> If you install and authorize Shizuku on your device, the App uses Shizuku locally only when you explicitly trigger cache trimming in App Manager.</li>
+        <li><strong>Network Access (<code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>):</strong> Used to communicate with Google Play Billing for In-App Purchases and Subscriptions, and to transmit anonymous crash reports and aggregated analytics diagnostics via Firebase.</li>
+    </ul>
+
+    <h2>3. In-App Purchases, Analytics &amp; Advertising</h2>
+    <h3>A. Google Play Billing</h3>
+    <p>Optional Pro upgrades (Pro Lifetime, Pro Annual, Pro Monthly) are processed securely through <strong>Google Play Billing</strong>. We do not collect or have access to your credit card numbers, bank account details, or billing address. Google Play provides non-personally-identifiable purchase tokens and subscription states solely to verify and maintain your Pro entitlement.</p>
+
+    <h3>B. Firebase Crashlytics &amp; Firebase Analytics</h3>
+    <p>Both debug and release builds integrate <strong>Google Firebase Crashlytics</strong> and <strong>Firebase Analytics</strong> to diagnose unexpected crashes and understand general feature usage (such as app version, Android OS version, device model, coarse country/region derived from IP address, anonymized app-instance and installation identifiers, crash stack traces, and screen interactions). Your personal files, photos, videos, filenames, and installed app lists are never sent to Firebase. Data sent to Firebase is encrypted in transit over HTTPS/TLS. Review Firebase privacy practices at <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">https://firebase.google.com/support/privacy</a>.</p>
+
+    <h3>C. Advertising</h3>
+    <p>Version 1.0 of the App is ad-free, does not request advertisements, and does not access the Android Advertising ID (<code>AD_ID</code>). If future versions introduce advertising (such as Google AdMob), this Privacy Policy and the Google Play Data Safety disclosures will be updated prior to release.</p>
+
+    <h2>4. Data Sharing &amp; Third-Party Services</h2>
+    <p>Except for payment processing handled by Google Play and diagnostic/analytics telemetry handled by Google Firebase as described above, the App does not share, sell, rent, or transfer personal or device data to any third parties.</p>
+    <p>Review Google&rsquo;s privacy practices at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.</p>
+
+    <h2>5. Data Retention &amp; Deletion</h2>
+    <p>Because the App operates locally without developer servers or user accounts:</p>
+    <ul>
+        <li>You can delete your local <strong>Savings Log</strong> inside the App at any time.</li>
+        <li>Uninstalling the App or clearing its storage in Android System Settings removes all locally saved preferences, whitelists, and logs.</li>
+    </ul>
+
+    <h2>6. Children&rsquo;s Privacy</h2>
+    <p>The App is not directed to children under the age of 13 and does not knowingly collect any personal information from children under 13. If you believe a child has provided personal data in connection with support requests, please contact us so we can delete it promptly.</p>
+
+    <h2>7. Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect new features or legal requirements. Changes take effect when posted on this page with an updated &ldquo;Last Updated&rdquo; date.</p>
+
+    <h2>8. Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, permissions, or your data, please contact us:</p>
+    <ul>
+        <li><strong>Publisher:</strong> COSMOMIME</li>
+        <li><strong>Email:</strong> <a href="mailto:cosmomime@gmail.com">cosmomime@gmail.com</a></li>
+    </ul>
+
+    <div class="footer">
+        &copy; 2026 COSMOMIME. All rights reserved.<br>
+        Storage Cleaner: Cache &amp; Junk (<code>com.cosmomime.bytepurge</code>)
+    </div>
+</div>
+</body>
+</html>
