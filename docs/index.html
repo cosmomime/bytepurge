@@ -3,22 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storage Cleaner: Cache &amp; Junk &mdash; COSMOMIME</title>
+    <meta name="color-scheme" content="light dark">
+    <title>PT KOSMOS PERANTI NUSANTARA (COSMOMIME) &mdash; Storage Cleaner: Cache &amp; Junk</title>
     <style>
         :root {
             color-scheme: light dark;
-            --bg: #0b0e14;
-            --surface: #121722;
-            --text: #e2e8f0;
-            --muted: #94a3b8;
-            --border: #1f2937;
-            --accent: #3b82f6;
+            --bg-light: #f8fafc;
+            --bg-dark: #0b0e14;
+            --surface-light: #ffffff;
+            --surface-dark: #121722;
+            --text-light: #1e293b;
+            --text-dark: #e2e8f0;
+            --muted-light: #475569;
+            --muted-dark: #94a3b8;
+            --border-light: #e2e8f0;
+            --border-dark: #1f2937;
+            --accent-light: #2563eb;
+            --accent-dark: #3b82f6;
+            --chip-bg-light: #f1f5f9;
+            --chip-bg-dark: #0f172a;
+
+            --bg: var(--bg-light);
+            --surface: var(--surface-light);
+            --text: var(--text-light);
+            --muted: var(--muted-light);
+            --border: var(--border-light);
+            --accent: var(--accent-light);
+            --chip-bg: var(--chip-bg-light);
         }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: var(--bg-dark);
+                --surface: var(--surface-dark);
+                --text: var(--text-dark);
+                --muted: var(--muted-dark);
+                --border: var(--border-dark);
+                --accent: var(--accent-dark);
+                --chip-bg: var(--chip-bg-dark);
+            }
+        }
+
+        @supports (color: light-dark(white, black)) {
+            :root {
+                --bg: light-dark(var(--bg-light), var(--bg-dark));
+                --surface: light-dark(var(--surface-light), var(--surface-dark));
+                --text: light-dark(var(--text-light), var(--text-dark));
+                --muted: light-dark(var(--muted-light), var(--muted-dark));
+                --border: light-dark(var(--border-light), var(--border-dark));
+                --accent: light-dark(var(--accent-light), var(--accent-dark));
+                --chip-bg: light-dark(var(--chip-bg-light), var(--chip-bg-dark));
+            }
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto;
             padding: 32px 16px;
             line-height: 1.6;
@@ -28,6 +70,9 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 32px 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        .hero {
             text-align: center;
         }
         img {
@@ -40,9 +85,21 @@
             margin: 0 0 8px;
             font-size: 1.7rem;
         }
+        h2 {
+            margin: 28px 0 12px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 1.1rem;
+        }
         p {
             color: var(--muted);
             margin: 8px 0 22px;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
         }
         .btn {
             display: inline-block;
@@ -53,20 +110,101 @@
             border-radius: 10px;
             text-decoration: none;
         }
-        .meta {
+        .btn:hover {
+            opacity: 0.92;
+        }
+        dl.details {
+            margin: 0;
+            display: grid;
+            grid-template-columns: minmax(150px, 200px) 1fr;
+            gap: 8px 16px;
+            font-size: 0.93rem;
+        }
+        dl.details dt {
+            font-weight: 600;
+            color: var(--text);
+        }
+        dl.details dd {
+            margin: 0;
+            color: var(--muted);
+        }
+        dl.details a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        dl.details a:hover {
+            text-decoration: underline;
+        }
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.88em;
+            background-color: var(--chip-bg);
+            padding: 2px 6px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+        }
+        footer {
             margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            text-align: center;
             font-size: 0.85rem;
             color: var(--muted);
+        }
+        @media (max-width: 560px) {
+            dl.details {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+            dl.details dt {
+                margin-top: 8px;
+            }
         }
     </style>
 </head>
 <body>
-<div class="card">
-    <img src="icon.png" alt="Storage Cleaner Icon">
-    <h1>Storage Cleaner: Cache &amp; Junk</h1>
-    <p>Private, on-device Android storage cleaner, duplicate finder, folder explorer, and photo/video compressor by COSMOMIME.</p>
-    <a class="btn" href="privacy-policy.html">Read Privacy Policy</a>
-    <div class="meta">Package ID: <code>com.cosmomime.bytepurge</code> &bull; Contact: cosmomime@gmail.com</div>
-</div>
+<main class="card">
+    <section class="hero">
+        <img src="icon.png" alt="Storage Cleaner App Icon" width="76" height="76" fetchpriority="high">
+        <h1>Storage Cleaner: Cache &amp; Junk</h1>
+        <p>Private, on-device Android storage cleaner, duplicate finder, folder explorer, and photo/video compressor published by <strong>COSMOMIME</strong> (<strong>PT KOSMOS PERANTI NUSANTARA</strong>).</p>
+        <div class="actions">
+            <a class="btn" href="privacy-policy.html">Read Privacy Policy</a>
+        </div>
+    </section>
+
+    <section aria-labelledby="corporate-heading">
+        <h2 id="corporate-heading">Corporate &amp; Developer Profile</h2>
+        <dl class="details">
+            <dt>Legal Entity</dt>
+            <dd>PT KOSMOS PERANTI NUSANTARA</dd>
+
+            <dt>Developer Brand</dt>
+            <dd>COSMOMIME</dd>
+
+            <dt>Business Registration (NIB)</dt>
+            <dd>1611260106157</dd>
+
+            <dt>Ministry Decree (SK AHU)</dt>
+            <dd>AHU-A140321.AH.01.30.Tahun 2026</dd>
+
+            <dt>Registered Address</dt>
+            <dd>Perum Puri Damara B-2 Munengan, RT 001, RW 013, Sidoluhur, Godean, Kab. Sleman, DI Yogyakarta 55264, Indonesia</dd>
+
+            <dt>Telephone</dt>
+            <dd><a href="tel:+6282147120559">+62 821-4712-0559</a></dd>
+
+            <dt>Contact Email</dt>
+            <dd><a href="mailto:cosmomime@gmail.com">cosmomime@gmail.com</a></dd>
+
+            <dt>Application Package</dt>
+            <dd><code>com.cosmomime.bytepurge</code></dd>
+        </dl>
+    </section>
+
+    <footer>
+        &copy; 2026 PT KOSMOS PERANTI NUSANTARA (COSMOMIME). All rights reserved.
+    </footer>
+</main>
 </body>
 </html>
